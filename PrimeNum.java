@@ -3,7 +3,9 @@
  
  * References:
  * For getting user inputs:
- *  https://www.w3schools.com/java/java_user_input.asp
+ *   https://www.w3schools.com/java/java_user_input.asp
+ * To convert double to int:
+ *   https://www.geeksforgeeks.org/convert-double-to-integer-in-java/
  */
 
 import java.util.Scanner;
@@ -19,35 +21,31 @@ public class PrimeNum {
                 int inputI = (int) Math.floor(input);
 
                 if (inputI <= 0) {
-                    sc.close();
                     break;
                 }
-                
-                if (inputI / input == 1) {
-                    boolean res = isPrime(input);
+                // If input is a whole number, perform prime calculation and show result.
+                if (inputI == input) {
+                    boolean res = isPrime(inputI);
                     showRes(res, inputI);
-
+                // If input is not a whole number, use inputI to perform prime calculation. Then show result, present menu, and break.
                 } else {
-                    boolean res = isPrime(input);
+                    boolean res = isPrime(inputI);
                     showRes(res, inputI);
                     menu();
-                    sc.close();
                     break;
-
                 }
-
             } catch(Exception e) {
-                sc.close();
-                System.exit(0);
+                break;
             }
         } while (true);
+        sc.close();
     }
 
     public static void menu() {
         System.out.print("Enter a positive number (0 or negative to exit): ");
     }
 
-    public static boolean isPrime(double n) {
+    public static boolean isPrime(int n) {
         if (n <= 1)                     return false;
         if (n <= 3)                     return true;
         if (n % 2 == 0 || n % 3 ==0)    return false;
